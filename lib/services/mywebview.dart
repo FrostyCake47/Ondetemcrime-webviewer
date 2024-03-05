@@ -9,7 +9,15 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
-  final controller = WebViewController(
+  late final controller;
+  late final WebViewCookieManager cookieManager = WebViewCookieManager();
+
+  void clearCookies() {
+    cookieManager.clearCookies();
+  }
+
+  _MyWebViewState(){
+    controller = WebViewController(
   )
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
   ..setBackgroundColor(const Color(0x00000000))
@@ -26,14 +34,26 @@ class _MyWebViewState extends State<MyWebView> {
         if (request.url.startsWith('https://any-site-you-dont-want-to-allow/')) {
           return NavigationDecision.prevent;
         }
+        if(request.url.contains('https://ondetemcrime.com.br/logout')){
+          clearCookies();
+        }
         return NavigationDecision.navigate;
       },
       
     ),
   )
   ..loadRequest(Uri.parse('https://ondetemcrime.com.br/'));
-  //..loadRequest(Uri.parse('https://pixie-web-two.vercel.app'));
+
+}
   
+
+  
+
+  @override
+  void initState() {
+    super.initState();
+    //clearCookies();
+  }
 
   @override
   Widget build(BuildContext context) {
