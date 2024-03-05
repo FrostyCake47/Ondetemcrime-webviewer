@@ -9,7 +9,6 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
-
   final controller = WebViewController(
   )
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -24,7 +23,7 @@ class _MyWebViewState extends State<MyWebView> {
       onPageFinished: (String url) {},
       onWebResourceError: (WebResourceError error) {},
       onNavigationRequest: (NavigationRequest request) {
-        if (request.url.startsWith('https://www.youtube.com/')) {
+        if (request.url.startsWith('https://any-site-you-dont-want-to-allow/')) {
           return NavigationDecision.prevent;
         }
         return NavigationDecision.navigate;
