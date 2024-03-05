@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebView extends StatefulWidget {
-  const WebView({super.key});
+class MyWebView extends StatefulWidget {
+  const MyWebView({super.key});
 
   @override
-  State<WebView> createState() => _WebViewState();
+  State<MyWebView> createState() => _MyWebViewState();
 }
 
-class _WebViewState extends State<WebView> {
-  final controller = WebViewController()
+class _MyWebViewState extends State<MyWebView> {
+
+  final controller = WebViewController(
+  )
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
   ..setBackgroundColor(const Color(0x00000000))
+  ..setUserAgent("random")
   ..setNavigationDelegate(
     NavigationDelegate(
       onProgress: (int progress) {
@@ -26,14 +29,15 @@ class _WebViewState extends State<WebView> {
         }
         return NavigationDecision.navigate;
       },
+      
     ),
   )
-  ..loadRequest(Uri.parse('https://flutter.dev'));
+  ..loadRequest(Uri.parse('https://ondetemcrime.com.br/'));
+  //..loadRequest(Uri.parse('https://pixie-web-two.vercel.app'));
+  
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: WebViewWidget(controller: controller),
-    );
+    return WebViewWidget(controller: controller);
   }
 }

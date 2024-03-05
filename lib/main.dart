@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webviewer/services/webview.dart';
+import 'package:webviewer/services/mywebview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Webviewer"),
+          title: const Text("Webviewer", textAlign: TextAlign.center,),
         ),
         body: const Center(
           child: Column(
             children: [
-              WebView(),
-              Text("Webview test")
+              Expanded(child: MyWebView()),
+              
             ],
           ),
         )
