@@ -9,14 +9,18 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
-  late final controller;
+  late WebViewController controller;
   late final WebViewCookieManager cookieManager = WebViewCookieManager();
 
-  void clearCookies() {
-    cookieManager.clearCookies();
+  void clearCookiesAndReload() {
+    cookieManager.clearCookies().then((_) {
+      controller.reload();
+    });
   }
 
-  _MyWebViewState(){
+  @override
+  void initState() {
+    super.initState();
     controller = WebViewController(
   )
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -35,7 +39,7 @@ class _MyWebViewState extends State<MyWebView> {
           return NavigationDecision.prevent;
         }
         if(request.url.contains('https://ondetemcrime.com.br/logout')){
-          clearCookies();
+          clearCookiesAndReload();
         }
         return NavigationDecision.navigate;
       },
@@ -44,15 +48,6 @@ class _MyWebViewState extends State<MyWebView> {
   )
   ..loadRequest(Uri.parse('https://ondetemcrime.com.br/'));
 
-}
-  
-
-  
-
-  @override
-  void initState() {
-    super.initState();
-    //clearCookies();
   }
 
   @override

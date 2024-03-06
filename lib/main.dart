@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(child: Expanded(child: MyWebView())),
+      home: SafeArea(child: Column(
+        children: [
+          Expanded(child: MyWebView()),
+        ],
+      )),
     );
   }
 }
