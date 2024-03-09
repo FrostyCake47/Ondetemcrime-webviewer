@@ -1,4 +1,4 @@
-package com.example.webviewer
+package com.onedetmcrime
 
 import io.flutter.embedding.android.FlutterActivity
 
