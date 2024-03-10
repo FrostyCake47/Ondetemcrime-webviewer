@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       home: SafeArea(child: Column(
         children: [
           Expanded(child: MyWebView()),
-          Text("cmon work"),
         ],
       )),
     );
